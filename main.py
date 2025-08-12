@@ -149,7 +149,7 @@ class PomodoroApp:
 
         # Inputs
         input_row = ttk.Frame(main, style="TFrame")
-        input_row.pack(fill=tk.X, pady=(0, 8))
+        input_row.pack(fill=tk.X, pady=(0, 8), padx=6)  # Adicione um padding horizontal
 
         ttk.Label(input_row, text="Foco (min):", style="TLabel").grid(row=0, column=0, sticky=tk.W)
         self.focus_var = tk.IntVar(value=DEFAULT_FOCUS)
@@ -159,7 +159,9 @@ class PomodoroApp:
         ttk.Label(input_row, text="Descanso (min):", style="TLabel").grid(row=0, column=2, sticky=tk.W)
         self.break_var = tk.IntVar(value=DEFAULT_BREAK)
         self.break_spin = ttk.Spinbox(input_row, from_=1, to=60, width=5, textvariable=self.break_var, style="TSpinbox")
-        self.break_spin.grid(row=0, column=3, padx=(6, 0))
+        self.break_spin.grid(row=0, column=3, padx=(6, 0), sticky=tk.EW)  # Adicione sticky=tk.EW
+
+        input_row.columnconfigure(3, weight=1)  # Permite que a última coluna expanda se necessário
 
         # Label de estado / tempo
         self.mode = "Foco"  
